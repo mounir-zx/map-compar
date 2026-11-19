@@ -5,7 +5,10 @@
     en: {
       tagline: "Compare the world, layer by layer", searchPlaceholder: "Search a place or address",
       search: "Search", myLocation: "My location", language: "Language", mapA: "MAP A", mapB: "MAP B",
-      chooseMapA: "Choose map A", chooseMapB: "Choose map B", measure: "Measure",
+      chooseMapA: "Choose map layer A", chooseMapB: "Choose map layer B",
+      chooseProviderA: "Choose provider for map A", chooseProviderB: "Choose provider for map B",
+      providerEsri: "Esri", providerGoogle: "Google Maps", providerOsm: "OpenStreetMap", providerCustom: "My tile maps",
+      measure: "Measure",
       distance: "Distance", area: "Area", syncOn: "Sync on", syncOff: "Sync off",
       mirrorOn: "Mirror points on", mirrorOff: "Mirror points off", importFile: "Import KML / GeoJSON",
       clearImports: "Clear imports", fitView: "Fit view", export: "Export GeoJSON",
@@ -17,8 +20,16 @@
       searchError: "Place not found. Try a more specific search.",
       searchFailed: "Search failed. Please try again.",
       mapTileError: "Map tiles could not load for {map}. Try another source or check your connection.",
-      googleKeyRequired: "Google Maps needs a restricted API key. Add it to the ignored map-config.local.js file; see README.",
+      googleKeyRequired: "Google Maps needs an API key. Use Configure Google API key to add one.",
       googleLoadFailed: "Google Maps could not be loaded. Check the API key, enabled Maps JavaScript API, billing, and referrer restrictions.",
+      configureGoogle: "Configure Google API key",
+      googleKeyTitle: "Configure Google Maps",
+      googleKeyHelp: "Enter a Google Maps Platform key with the Maps JavaScript API enabled, billing configured, and website referrers restricted. The key is saved in this browser and visible to visitors; it is not a secret.",
+      googleKeyLabel: "Google Maps API key",
+      googleKeySave: "Save key",
+      googleKeyCancel: "Cancel",
+      googleKeySaved: "Google API key saved in this browser.",
+      googleKeyStorageError: "Could not save the Google API key in this browser.",
       addMap: "Add map by URL",
       customMapTitle: "Add a custom tile map",
       customMapName: "Map name",
@@ -51,7 +62,10 @@
     fr: {
       tagline: "Comparez le monde, carte par carte", searchPlaceholder: "Rechercher un lieu ou une adresse",
       search: "Rechercher", myLocation: "Ma position", language: "Langue", mapA: "CARTE A", mapB: "CARTE B",
-      chooseMapA: "Choisir la carte A", chooseMapB: "Choisir la carte B", measure: "Mesurer",
+      chooseMapA: "Choisir la couche de la carte A", chooseMapB: "Choisir la couche de la carte B",
+      chooseProviderA: "Choisir le fournisseur de la carte A", chooseProviderB: "Choisir le fournisseur de la carte B",
+      providerEsri: "Esri", providerGoogle: "Google Maps", providerOsm: "OpenStreetMap", providerCustom: "Mes cartes",
+      measure: "Mesurer",
       distance: "Distance", area: "Surface", syncOn: "Synchro activée", syncOff: "Synchro désactivée",
       mirrorOn: "Dupliquer les points : oui", mirrorOff: "Dupliquer les points : non", importFile: "Importer KML / GeoJSON",
       clearImports: "Effacer les imports", fitView: "Cadrer", export: "Exporter GeoJSON",
@@ -63,8 +77,16 @@
       searchError: "Lieu introuvable. Essayez une recherche plus précise.",
       searchFailed: "Échec de la recherche. Veuillez réessayer.",
       mapTileError: "Échec du chargement des tuiles {map}. Essayez une autre source ou vérifiez la connexion.",
-      googleKeyRequired: "Google Maps nécessite une clé API restreinte. Ajoutez-la dans map-config.local.js (ignoré par Git) ; voir README.",
+      googleKeyRequired: "Google Maps nécessite une clé API. Utilisez Configurer la clé API Google pour l’ajouter.",
       googleLoadFailed: "Google Maps n'a pas pu être chargé. Vérifiez la clé, l'API JavaScript Maps, la facturation et les domaines autorisés.",
+      configureGoogle: "Configurer la clé API Google",
+      googleKeyTitle: "Configurer Google Maps",
+      googleKeyHelp: "Saisissez une clé Google Maps Platform avec l’API JavaScript Maps activée, la facturation configurée et les domaines du site autorisés. La clé est enregistrée dans ce navigateur et visible par les visiteurs ; ce n’est pas un secret.",
+      googleKeyLabel: "Clé API Google Maps",
+      googleKeySave: "Enregistrer la clé",
+      googleKeyCancel: "Annuler",
+      googleKeySaved: "Clé API Google enregistrée dans ce navigateur.",
+      googleKeyStorageError: "Impossible d’enregistrer la clé API Google dans ce navigateur.",
       addMap: "Ajouter une carte par URL",
       customMapTitle: "Ajouter une carte personnalisée",
       customMapName: "Nom de la carte",
@@ -96,7 +118,10 @@
     es: {
       tagline: "Compara el mundo, mapa a mapa", searchPlaceholder: "Buscar un lugar o dirección",
       search: "Buscar", myLocation: "Mi ubicación", language: "Idioma", mapA: "MAPA A", mapB: "MAPA B",
-      chooseMapA: "Elegir mapa A", chooseMapB: "Elegir mapa B", measure: "Medir",
+      chooseMapA: "Elegir capa del mapa A", chooseMapB: "Elegir capa del mapa B",
+      chooseProviderA: "Elegir proveedor del mapa A", chooseProviderB: "Elegir proveedor del mapa B",
+      providerEsri: "Esri", providerGoogle: "Google Maps", providerOsm: "OpenStreetMap", providerCustom: "Mis mapas",
+      measure: "Medir",
       distance: "Distancia", area: "Área", syncOn: "Sincronización activa", syncOff: "Sincronización desactivada",
       mirrorOn: "Duplicar puntos: sí", mirrorOff: "Duplicar puntos: no", importFile: "Importar KML / GeoJSON",
       clearImports: "Borrar importaciones", fitView: "Ajustar vista", export: "Exportar GeoJSON",
@@ -108,8 +133,16 @@
       searchError: "Lugar no encontrado. Prueba una búsqueda más específica.",
       searchFailed: "La búsqueda falló. Inténtalo de nuevo.",
       mapTileError: "No se pudieron cargar los mosaicos de {map}. Prueba otra fuente o revisa tu conexión.",
-      googleKeyRequired: "Google Maps necesita una clave API restringida. Añádela a map-config.local.js (ignorado por Git); consulta README.",
+      googleKeyRequired: "Google Maps necesita una clave API. Usa Configurar clave API de Google para añadirla.",
       googleLoadFailed: "No se pudo cargar Google Maps. Comprueba la clave, Maps JavaScript API, facturación y dominios autorizados.",
+      configureGoogle: "Configurar clave API de Google",
+      googleKeyTitle: "Configurar Google Maps",
+      googleKeyHelp: "Introduce una clave de Google Maps Platform con Maps JavaScript API habilitada, facturación configurada y los dominios del sitio restringidos. La clave se guarda en este navegador y es visible para los visitantes; no es secreta.",
+      googleKeyLabel: "Clave API de Google Maps",
+      googleKeySave: "Guardar clave",
+      googleKeyCancel: "Cancelar",
+      googleKeySaved: "Clave API de Google guardada en este navegador.",
+      googleKeyStorageError: "No se pudo guardar la clave API de Google en este navegador.",
       addMap: "Añadir mapa por URL",
       customMapTitle: "Añadir un mapa personalizado",
       customMapName: "Nombre del mapa",
@@ -141,7 +174,10 @@
     ar: {
       tagline: "قارن الخرائط طبقةً بطبقة", searchPlaceholder: "ابحث عن مكان أو عنوان",
       search: "بحث", myLocation: "موقعي", language: "اللغة", mapA: "الخريطة أ", mapB: "الخريطة ب",
-      chooseMapA: "اختر الخريطة أ", chooseMapB: "اختر الخريطة ب", measure: "القياس",
+      chooseMapA: "اختر طبقة الخريطة أ", chooseMapB: "اختر طبقة الخريطة ب",
+      chooseProviderA: "اختر مزوّد الخريطة أ", chooseProviderB: "اختر مزوّد الخريطة ب",
+      providerEsri: "Esri", providerGoogle: "Google Maps", providerOsm: "OpenStreetMap", providerCustom: "خرائطي",
+      measure: "القياس",
       distance: "المسافة", area: "المساحة", syncOn: "المزامنة مفعّلة", syncOff: "المزامنة متوقفة",
       mirrorOn: "تكرار النقاط: مفعّل", mirrorOff: "تكرار النقاط: متوقف", importFile: "استيراد KML / GeoJSON",
       clearImports: "مسح الملفات المستوردة", fitView: "ملاءمة العرض", export: "تصدير GeoJSON",
@@ -153,8 +189,16 @@
       searchError: "لم يتم العثور على المكان. جرّب بحثاً أكثر تحديداً.",
       searchFailed: "تعذّر البحث. حاول مرة أخرى.",
       mapTileError: "تعذّر تحميل خرائط {map}. جرّب مصدراً آخر أو تحقق من الاتصال.",
-      googleKeyRequired: "تتطلب Google Maps مفتاح API مقيّداً. أضفه إلى map-config.local.js؛ راجع README.",
+      googleKeyRequired: "تتطلب Google Maps مفتاح API. استخدم إعداد مفتاح Google API لإضافته.",
       googleLoadFailed: "تعذّر تحميل Google Maps. تحقق من المفتاح وواجهة Maps JavaScript والفوترة والنطاقات المسموحة.",
+      configureGoogle: "إعداد مفتاح Google API",
+      googleKeyTitle: "إعداد Google Maps",
+      googleKeyHelp: "أدخل مفتاح Google Maps Platform مع تفعيل Maps JavaScript API وإعداد الفوترة وتقييد نطاقات الموقع. يُحفظ المفتاح في هذا المتصفح ويكون مرئياً للزوار؛ فهو ليس سراً.",
+      googleKeyLabel: "مفتاح Google Maps API",
+      googleKeySave: "حفظ المفتاح",
+      googleKeyCancel: "إلغاء",
+      googleKeySaved: "تم حفظ مفتاح Google API في هذا المتصفح.",
+      googleKeyStorageError: "تعذّر حفظ مفتاح Google API في هذا المتصفح.",
       addMap: "إضافة خريطة عبر رابط",
       customMapTitle: "إضافة خريطة مخصصة",
       customMapName: "اسم الخريطة",
@@ -197,6 +241,7 @@
   ];
   const mapSources = [...builtInMapSources];
   const customMapStorageKey = "atlas-compare.custom-tile-maps";
+  const googleApiKeyStorageKey = "atlas-compare.google-maps-api-key";
 
   const defaultCenter = [36.591, 2.058];
   const defaultZoom = 13;
@@ -221,7 +266,7 @@
   const $ = id => document.getElementById(id);
   const statusElement = $("status");
   let googlePromise;
-  let localConfigPromise;
+  let pendingGoogleSelection = null;
   let customMapStorageError = false;
 
   function normalizeCustomMap(value) {
@@ -283,6 +328,49 @@
       : translate("maps")[builtInMapSources.indexOf(source)];
   }
 
+  function providerForSource(source) {
+    if (source.custom) return "custom";
+    if (source.googleType) return "google";
+    if (source.id === "osm") return "osm";
+    return "esri";
+  }
+
+  function sourcesForProvider(provider) {
+    return mapSources.filter(source => providerForSource(source) === provider);
+  }
+
+  function updateMapSelectors(side, sourceId) {
+    const source = mapSources.find(item => item.id === sourceId);
+    if (!source) return;
+    const provider = providerForSource(source);
+    const providerLabels = {
+      esri: translate("providerEsri"),
+      google: translate("providerGoogle"),
+      osm: translate("providerOsm"),
+      custom: translate("providerCustom")
+    };
+    const availableProviders = ["esri", "google", "osm"];
+    if (mapSources.some(item => item.custom)) availableProviders.push("custom");
+
+    const providerSelect = $("provider-" + side);
+    providerSelect.replaceChildren(...availableProviders.map(providerId => {
+      const option = document.createElement("option");
+      option.value = providerId;
+      option.textContent = providerLabels[providerId];
+      return option;
+    }));
+    providerSelect.value = provider;
+
+    const sourceSelect = $("layer-" + side);
+    sourceSelect.replaceChildren(...sourcesForProvider(provider).map(item => {
+      const option = document.createElement("option");
+      option.value = item.id;
+      option.textContent = mapSourceLabel(item);
+      return option;
+    }));
+    sourceSelect.value = sourceId;
+  }
+
   function escapeHtml(value) {
     return String(value).replace(/[&<>"']/g, character => ({
       "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
@@ -306,12 +394,7 @@
       localStorage.setItem(customMapStorageKey, JSON.stringify(nextCustomMaps));
       customMapSources = nextCustomMaps;
       mapSources.push(source);
-      ["left", "right"].forEach(side => {
-        const option = document.createElement("option");
-        option.value = source.id;
-        option.textContent = source.name;
-        $("layer-" + side).append(option);
-      });
+      ["left", "right"].forEach(side => updateMapSelectors(side, state.sources[side]));
       $("custom-map-dialog").close();
       $("custom-map-form").reset();
       setStatus(translate("customMapAdded"));
@@ -436,51 +519,89 @@
     $("label-" + side).textContent = `${side === "left" ? "A" : "B"} · ${mapSourceLabel(source)}`;
   }
 
-  function loadLocalGoogleConfig() {
-    if (window.MAP_COMPAR_CONFIG) return Promise.resolve();
-    if (localConfigPromise) return localConfigPromise;
-    localConfigPromise = new Promise((resolve, reject) => {
-      const script = document.createElement("script");
-      script.src = "./map-config.local.js";
-      script.onload = resolve;
-      script.onerror = () => {
-        localConfigPromise = null;
-        reject(new Error(translate("googleKeyRequired")));
-      };
-      document.head.append(script);
-    });
-    return localConfigPromise;
+  function getGoogleMapsApiKey() {
+    const configuredKey = window.MAP_COMPAR_CONFIG?.googleMapsApiKey?.trim();
+    if (configuredKey) return configuredKey;
+    try {
+      return localStorage.getItem(googleApiKeyStorageKey)?.trim() || "";
+    } catch {
+      throw new Error(translate("googleKeyStorageError"));
+    }
   }
 
   function loadGoogleMapsApi() {
     if (window.google?.maps) return Promise.resolve();
     if (googlePromise) return googlePromise;
-    googlePromise = loadLocalGoogleConfig().then(() => {
-      const apiKey = window.MAP_COMPAR_CONFIG?.googleMapsApiKey?.trim();
-      if (!apiKey) throw new Error(translate("googleKeyRequired"));
-      return new Promise((resolve, reject) => {
-        const callbackName = "__atlasGoogleMapsReady";
-        const script = document.createElement("script");
-        window[callbackName] = () => {
-          delete window[callbackName];
-          resolve();
-        };
-        window.gm_authFailure = () => {
-          setStatus(translate("googleLoadFailed"), true);
-        };
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&callback=${callbackName}&v=weekly`;
-        script.async = true;
-        script.onerror = () => {
-          delete window[callbackName];
-          reject(new Error(translate("googleLoadFailed")));
-        };
-        document.head.append(script);
-      });
+    const apiKey = getGoogleMapsApiKey();
+    if (!apiKey) throw new Error(translate("googleKeyRequired"));
+    googlePromise = new Promise((resolve, reject) => {
+      const callbackName = "__atlasGoogleMapsReady";
+      const script = document.createElement("script");
+      window[callbackName] = () => {
+        delete window[callbackName];
+        resolve();
+      };
+      window.gm_authFailure = () => {
+        setStatus(translate("googleLoadFailed"), true);
+      };
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&callback=${callbackName}&v=weekly`;
+      script.async = true;
+      script.onerror = () => {
+        delete window[callbackName];
+        reject(new Error(translate("googleLoadFailed")));
+      };
+      document.head.append(script);
     }).catch(error => {
       googlePromise = null;
       throw error;
     });
     return googlePromise;
+  }
+
+  function openGoogleKeyDialog(selection = null) {
+    pendingGoogleSelection = selection;
+    $("google-key-input").value = "";
+    $("google-key-error").textContent = "";
+    $("google-key-dialog").showModal();
+  }
+
+  function saveGoogleApiKey(event) {
+    event.preventDefault();
+    const errorElement = $("google-key-error");
+    errorElement.textContent = "";
+    const apiKey = $("google-key-input").value.trim();
+    if (!apiKey) {
+      errorElement.textContent = translate("googleKeyRequired");
+      return;
+    }
+    try {
+      localStorage.setItem(googleApiKeyStorageKey, apiKey);
+    } catch {
+      errorElement.textContent = translate("googleKeyStorageError");
+      return;
+    }
+
+    const existingConfig = window.MAP_COMPAR_CONFIG && typeof window.MAP_COMPAR_CONFIG === "object"
+      ? window.MAP_COMPAR_CONFIG
+      : {};
+    window.MAP_COMPAR_CONFIG = { ...existingConfig, googleMapsApiKey: apiKey };
+    googlePromise = null;
+    const selection = pendingGoogleSelection;
+    pendingGoogleSelection = null;
+    $("google-key-dialog").close();
+    $("google-key-form").reset();
+    if (selection) {
+      changeMapSource(selection.side, selection.sourceId);
+    } else {
+      setStatus(translate("googleKeySaved"));
+    }
+  }
+
+  function handleGoogleKeyDialogClose() {
+    if (!pendingGoogleSelection) return;
+    const { side, oldSourceId } = pendingGoogleSelection;
+    pendingGoogleSelection = null;
+    updateMapSelectors(side, oldSourceId);
   }
 
   async function changeMapSource(side, sourceId) {
@@ -517,27 +638,31 @@
       if (oldLayer) maps[side].removeLayer(oldLayer);
       state.layers[side].base = nextLayer;
       state.sources[side] = source.id;
-      $("layer-" + side).value = source.id;
+      updateMapSelectors(side, source.id);
       updateMapLabel(side);
       if (statusElement.classList.contains("error")) setStatus(translate(state.mode === "area" ? "areaHelp" : "measureHelp"));
     } catch (error) {
+      if (source.googleType && error.message === translate("googleKeyRequired")) {
+        $("layer-" + side).value = sourceId;
+        openGoogleKeyDialog({ side, sourceId, oldSourceId });
+        return;
+      }
       console.error(error);
-      $("layer-" + side).value = oldSourceId;
+      updateMapSelectors(side, oldSourceId);
       setStatus(error.message || translate("googleLoadFailed"), true);
     }
   }
 
   function populateMapSelectors() {
     ["left", "right"].forEach(side => {
-      const select = $("layer-" + side);
-      mapSources.forEach(source => {
-        const option = document.createElement("option");
-        option.value = source.id;
-        option.textContent = mapSourceLabel(source);
-        select.append(option);
+      updateMapSelectors(side, state.sources[side]);
+      $("provider-" + side).addEventListener("change", event => {
+        const source = sourcesForProvider(event.target.value)[0];
+        if (!source) return;
+        updateMapSelectors(side, source.id);
+        changeMapSource(side, source.id);
       });
-      select.value = state.sources[side];
-      select.addEventListener("change", event => changeMapSource(side, event.target.value));
+      $("layer-" + side).addEventListener("change", event => changeMapSource(side, event.target.value));
     });
   }
 
@@ -554,15 +679,7 @@
     });
     $("search-input").setAttribute("aria-label", translate("searchPlaceholder"));
     ["left", "right"].forEach(side => {
-      const select = $("layer-" + side);
-      const selected = select.value;
-      select.replaceChildren(...mapSources.map(source => {
-        const option = document.createElement("option");
-        option.value = source.id;
-        option.textContent = mapSourceLabel(source);
-        return option;
-      }));
-      select.value = selected;
+      updateMapSelectors(side, state.sources[side]);
       updateMapLabel(side);
     });
     $("sync-btn").textContent = translate(state.sync ? "syncOn" : "syncOff");
@@ -925,6 +1042,10 @@
       $("mirror-btn").setAttribute("aria-pressed", String(state.mirror));
     });
     $("language-select").addEventListener("change", event => updateLanguage(event.target.value));
+    $("configure-google-btn").addEventListener("click", () => openGoogleKeyDialog());
+    $("google-key-form").addEventListener("submit", saveGoogleApiKey);
+    $("google-key-cancel").addEventListener("click", () => $("google-key-dialog").close());
+    $("google-key-dialog").addEventListener("close", handleGoogleKeyDialogClose);
     $("add-custom-map-btn").addEventListener("click", () => {
       $("custom-map-error").textContent = "";
       $("custom-map-form").reset();

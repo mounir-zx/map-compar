@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101a2b">
+  <meta name="theme-color" content="#f8fafc">
   <meta name="description" content="Compare maps, import geospatial files, and measure distances and areas.">
   <title>Atlas Compare — Professional map comparison</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,8 +15,15 @@
 <body>
   <main class="app">
     <header class="topbar">
-      <a class="brand" href="./map-compar.html" aria-label="Atlas Compare home">
-        <span class="brand-mark" aria-hidden="true">A</span>
+      <a class="brand" href="./" aria-label="Atlas Compare home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" focusable="false">
+            <path d="m7 12 11-4 12 4 11-4v28l-11 4-12-4-11 4z" fill="#fff" opacity=".96"/>
+            <path d="M18 8v28m12-24v28" fill="none" stroke="#3979cf" stroke-linecap="round" stroke-width="2.2"/>
+            <path d="M24 13c-4 0-7.2 3.1-7.2 7 0 5.3 7.2 12.1 7.2 12.1s7.2-6.8 7.2-12.1c0-3.9-3.2-7-7.2-7Z" fill="#137f75"/>
+            <circle cx="24" cy="20" r="2.5" fill="#fff"/>
+          </svg>
+        </span>
         <span class="brand-copy">
           <span class="brand-name">Atlas Compare</span>
           <span class="brand-caption" data-i18n="tagline">Compare the world, layer by layer</span>
@@ -24,7 +31,10 @@
       </a>
 
       <form class="search" id="search-form" role="search">
-        <span class="search-icon" aria-hidden="true">⌕</span>
+        <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="10.8" cy="10.8" r="6.8"></circle>
+          <path d="m16 16 4.5 4.5"></path>
+        </svg>
         <input id="search-input" type="search" autocomplete="off" data-i18n-placeholder="searchPlaceholder" aria-label="Search a place or address">
         <button class="button button-primary" type="submit" data-i18n="search">Search</button>
       </form>
@@ -47,8 +57,12 @@
           <div id="map-left" class="map-canvas"></div>
           <div class="map-head">
             <div class="map-heading"><span class="side-dot"></span><span class="map-title" data-i18n="mapA">MAP A</span></div>
-            <label class="sr-only" for="layer-left" data-i18n="chooseMapA">Choose map A</label>
-            <select id="layer-left" class="map-select"></select>
+            <div class="map-source-selectors">
+              <label class="sr-only" for="provider-left" data-i18n="chooseProviderA">Choose provider for map A</label>
+              <select id="provider-left" class="provider-select"></select>
+              <label class="sr-only" for="layer-left" data-i18n="chooseMapA">Choose map A</label>
+              <select id="layer-left" class="map-select"></select>
+            </div>
           </div>
           <div id="label-left" class="map-credit"></div>
         </section>
@@ -57,8 +71,12 @@
           <div id="map-right" class="map-canvas"></div>
           <div class="map-head">
             <div class="map-heading"><span class="side-dot"></span><span class="map-title" data-i18n="mapB">MAP B</span></div>
-            <label class="sr-only" for="layer-right" data-i18n="chooseMapB">Choose map B</label>
-            <select id="layer-right" class="map-select"></select>
+            <div class="map-source-selectors">
+              <label class="sr-only" for="provider-right" data-i18n="chooseProviderB">Choose provider for map B</label>
+              <select id="provider-right" class="provider-select"></select>
+              <label class="sr-only" for="layer-right" data-i18n="chooseMapB">Choose map B</label>
+              <select id="layer-right" class="map-select"></select>
+            </div>
           </div>
           <div id="label-right" class="map-credit"></div>
         </section>
@@ -79,6 +97,7 @@
           </div>
 
           <div class="toolbar-group toolbar-actions">
+            <button type="button" class="button button-soft" id="configure-google-btn" data-i18n="configureGoogle">Configure Google API key</button>
             <button type="button" class="button button-soft" id="add-custom-map-btn" data-i18n="addMap">Add map by URL</button>
             <label class="button button-soft file-button" for="import-file" data-i18n="importFile">Import KML / GeoJSON</label>
             <input id="import-file" class="sr-only" type="file" accept=".kml,.xml,.geojson,.json,application/vnd.google-earth.kml+xml,application/geo+json,application/json">
@@ -117,22 +136,60 @@
     </section>
   </main>
 
+  <dialog id="google-key-dialog" aria-labelledby="google-key-title" aria-describedby="google-key-help">
+    <form id="google-key-form">
+      <div class="dialog-heading">
+        <span class="dialog-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false"><path d="M12 3.5a6.5 6.5 0 0 0-6.5 6.5c0 4.7 6.5 10.5 6.5 10.5S18.5 14.7 18.5 10A6.5 6.5 0 0 0 12 3.5Z"/><circle cx="12" cy="10" r="2.2"/></svg>
+        </span>
+        <h2 id="google-key-title" data-i18n="googleKeyTitle">Configure Google Maps</h2>
+      </div>
+      <p id="google-key-help" class="custom-map-help" data-i18n="googleKeyHelp">Enter a Google Maps Platform key with the Maps JavaScript API enabled, billing configured, and website referrers restricted. The key is saved in this browser and visible to visitors; it is not a secret.</p>
+      <div class="form-field">
+        <label for="google-key-input" data-i18n="googleKeyLabel">Google Maps API key</label>
+        <input id="google-key-input" type="text" autocomplete="off" required>
+      </div>
+      <p id="google-key-error" class="custom-map-error" role="alert"></p>
+      <div class="dialog-actions">
+        <button type="button" class="button button-soft" id="google-key-cancel" data-i18n="googleKeyCancel">Cancel</button>
+        <button type="submit" class="button button-primary" data-i18n="googleKeySave">Save key</button>
+      </div>
+    </form>
+  </dialog>
+
   <dialog id="custom-map-dialog" aria-labelledby="custom-map-title" aria-describedby="custom-map-help">
     <form id="custom-map-form">
-      <h2 id="custom-map-title" data-i18n="customMapTitle">Add a custom tile map</h2>
+      <div class="dialog-heading">
+        <span class="dialog-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false"><path d="m3.5 6.5 5.3-2 6.4 2 5.3-2v13l-5.3 2-6.4-2-5.3 2z"/><path d="M8.8 4.5v13m6.4-11v13"/></svg>
+        </span>
+        <h2 id="custom-map-title" data-i18n="customMapTitle">Add a custom tile map</h2>
+      </div>
       <p id="custom-map-help" class="custom-map-help" data-i18n="customMapHelp">Use {z}, {x}, and {y} in the URL. Optional: {s} for subdomains and {apiKey} for your key. Keys are saved in this browser and visible to visitors; use provider-restricted keys.</p>
-      <label for="custom-map-name" data-i18n="customMapName">Map name</label>
-      <input id="custom-map-name" type="text" maxlength="80" required>
-      <label for="custom-map-url" data-i18n="customMapUrl">XYZ tile URL template</label>
-      <input id="custom-map-url" type="text" inputmode="url" autocomplete="url" required>
-      <label for="custom-map-api-key" data-i18n="customMapApiKey">API key (optional)</label>
-      <input id="custom-map-api-key" type="text" autocomplete="off">
-      <label for="custom-map-attribution" data-i18n="customMapAttribution">Attribution</label>
-      <input id="custom-map-attribution" type="text" maxlength="300" required>
-      <label for="custom-map-subdomains" data-i18n="customMapSubdomains">Subdomains (optional)</label>
-      <input id="custom-map-subdomains" type="text" autocomplete="off">
+      <div class="form-field">
+        <label for="custom-map-name" data-i18n="customMapName">Map name</label>
+        <input id="custom-map-name" type="text" maxlength="80" required>
+      </div>
+      <div class="form-field">
+        <label for="custom-map-url" data-i18n="customMapUrl">XYZ tile URL template</label>
+        <input id="custom-map-url" class="url-input" type="text" inputmode="url" autocomplete="url" required>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="custom-map-api-key" data-i18n="customMapApiKey">API key (optional)</label>
+          <input id="custom-map-api-key" type="text" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label for="custom-map-subdomains" data-i18n="customMapSubdomains">Subdomains (optional)</label>
+          <input id="custom-map-subdomains" type="text" autocomplete="off">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="custom-map-attribution" data-i18n="customMapAttribution">Attribution</label>
+        <input id="custom-map-attribution" type="text" maxlength="300" required>
+      </div>
       <p id="custom-map-error" class="custom-map-error" role="alert"></p>
-      <div class="custom-map-actions">
+      <div class="dialog-actions">
         <button type="button" class="button button-soft" id="custom-map-cancel" data-i18n="customMapCancel">Cancel</button>
         <button type="submit" class="button button-primary" data-i18n="customMapSave">Save map</button>
       </div>
