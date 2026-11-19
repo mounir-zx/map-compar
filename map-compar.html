@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a2b">
+  <meta name="description" content="Compare maps, import geospatial files, and measure distances and areas.">
+  <title>Atlas Compare — Professional map comparison</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <a class="brand" href="./map-compar.html" aria-label="Atlas Compare home">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span class="brand-copy">
+          <span class="brand-name">Atlas Compare</span>
+          <span class="brand-caption" data-i18n="tagline">Compare the world, layer by layer</span>
+        </span>
+      </a>
+
+      <form class="search" id="search-form" role="search">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="search-input" type="search" autocomplete="off" data-i18n-placeholder="searchPlaceholder" aria-label="Search a place or address">
+        <button class="button button-primary" type="submit" data-i18n="search">Search</button>
+      </form>
+
+      <div class="top-actions">
+        <button class="button button-quiet" id="locate-btn" type="button" data-i18n="myLocation">My location</button>
+        <label class="sr-only" for="language-select" data-i18n="language">Language</label>
+        <select class="language" id="language-select" aria-label="Language">
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="ar">العربية</option>
+        </select>
+      </div>
+    </header>
+
+    <section class="workspace" aria-label="Map comparison workspace">
+      <div class="map-grid">
+        <section class="map-pane" data-side="left" aria-label="Map A">
+          <div id="map-left" class="map-canvas"></div>
+          <div class="map-head">
+            <div class="map-heading"><span class="side-dot"></span><span class="map-title" data-i18n="mapA">MAP A</span></div>
+            <label class="sr-only" for="layer-left" data-i18n="chooseMapA">Choose map A</label>
+            <select id="layer-left" class="map-select"></select>
+          </div>
+          <div id="label-left" class="map-credit"></div>
+        </section>
+
+        <section class="map-pane" data-side="right" aria-label="Map B">
+          <div id="map-right" class="map-canvas"></div>
+          <div class="map-head">
+            <div class="map-heading"><span class="side-dot"></span><span class="map-title" data-i18n="mapB">MAP B</span></div>
+            <label class="sr-only" for="layer-right" data-i18n="chooseMapB">Choose map B</label>
+            <select id="layer-right" class="map-select"></select>
+          </div>
+          <div id="label-right" class="map-credit"></div>
+        </section>
+
+        <div class="divider-badge" aria-hidden="true">VS</div>
+      </div>
+
+      <section class="control-panel" aria-label="Map tools and measurements">
+        <div class="toolbar">
+          <div class="toolbar-group">
+            <span class="toolbar-label" data-i18n="measure">Measure</span>
+            <div class="segmented-control" role="group" aria-label="Measurement mode">
+              <button type="button" class="button button-segment active" data-mode="distance" aria-pressed="true" data-i18n="distance">Distance</button>
+              <button type="button" class="button button-segment" data-mode="area" aria-pressed="false" data-i18n="area">Area</button>
+            </div>
+            <button type="button" class="button button-soft is-active" id="sync-btn" aria-pressed="true" data-i18n="syncOn">Sync on</button>
+            <button type="button" class="button button-soft is-active" id="mirror-btn" aria-pressed="true" data-i18n="mirrorOn">Mirror points on</button>
+          </div>
+
+          <div class="toolbar-group toolbar-actions">
+            <button type="button" class="button button-soft" id="add-custom-map-btn" data-i18n="addMap">Add map by URL</button>
+            <label class="button button-soft file-button" for="import-file" data-i18n="importFile">Import KML / GeoJSON</label>
+            <input id="import-file" class="sr-only" type="file" accept=".kml,.xml,.geojson,.json,application/vnd.google-earth.kml+xml,application/geo+json,application/json">
+            <button type="button" class="button button-soft" id="clear-import-btn" data-i18n="clearImports">Clear imports</button>
+            <button type="button" class="button button-soft" id="fit-btn" data-i18n="fitView">Fit view</button>
+            <button type="button" class="button button-soft" id="export-btn" data-i18n="export">Export GeoJSON</button>
+            <button type="button" class="button button-danger" id="clear-btn" data-i18n="clear">Clear measurements</button>
+          </div>
+        </div>
+
+        <div class="measurements" aria-live="polite">
+          <article class="metric-card metric-a">
+            <span class="metric-mark">A</span>
+            <div><div class="metric-label" data-i18n="mapAMeasurement">Map A measurement</div><div class="metric-value" id="value-left">0 m</div></div>
+          </article>
+          <article class="metric-card metric-b">
+            <span class="metric-mark">B</span>
+            <div><div class="metric-label" data-i18n="mapBMeasurement">Map B measurement</div><div class="metric-value" id="value-right">0 m</div></div>
+          </article>
+          <article class="metric-card metric-difference">
+            <span class="metric-mark">Δ</span>
+            <div><div class="metric-label" id="difference-label" data-i18n="difference">Difference (A − B)</div><div class="metric-value" id="value-difference">0 m</div></div>
+          </article>
+          <div class="cursor-card">
+            <span class="cursor-symbol" aria-hidden="true">⌖</span>
+            <span class="metric-label" data-i18n="cursor">Cursor</span>
+            <strong id="cursor-coordinates">Move over a map</strong>
+          </div>
+        </div>
+
+        <div class="status-row">
+          <span class="status-indicator" aria-hidden="true"></span>
+          <p id="status" class="status" role="status" aria-live="polite" data-i18n="measureHelp">Click to add points. Right-click a map to undo its last point.</p>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="custom-map-dialog" aria-labelledby="custom-map-title" aria-describedby="custom-map-help">
+    <form id="custom-map-form">
+      <h2 id="custom-map-title" data-i18n="customMapTitle">Add a custom tile map</h2>
+      <p id="custom-map-help" class="custom-map-help" data-i18n="customMapHelp">Use {z}, {x}, and {y} in the URL. Optional: {s} for subdomains and {apiKey} for your key. Keys are saved in this browser and visible to visitors; use provider-restricted keys.</p>
+      <label for="custom-map-name" data-i18n="customMapName">Map name</label>
+      <input id="custom-map-name" type="text" maxlength="80" required>
+      <label for="custom-map-url" data-i18n="customMapUrl">XYZ tile URL template</label>
+      <input id="custom-map-url" type="text" inputmode="url" autocomplete="url" required>
+      <label for="custom-map-api-key" data-i18n="customMapApiKey">API key (optional)</label>
+      <input id="custom-map-api-key" type="text" autocomplete="off">
+      <label for="custom-map-attribution" data-i18n="customMapAttribution">Attribution</label>
+      <input id="custom-map-attribution" type="text" maxlength="300" required>
+      <label for="custom-map-subdomains" data-i18n="customMapSubdomains">Subdomains (optional)</label>
+      <input id="custom-map-subdomains" type="text" autocomplete="off">
+      <p id="custom-map-error" class="custom-map-error" role="alert"></p>
+      <div class="custom-map-actions">
+        <button type="button" class="button button-soft" id="custom-map-cancel" data-i18n="customMapCancel">Cancel</button>
+        <button type="submit" class="button button-primary" data-i18n="customMapSave">Save map</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@0.14.0/dist/Leaflet.GoogleMutant.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
